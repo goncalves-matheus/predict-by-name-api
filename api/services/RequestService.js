@@ -5,21 +5,27 @@ const COUNTRY = 'https://api.nationalize.io?name='
 const AGE = 'https://api.agify.io?name='
 const PHRASE = 'https://www.affirmations.dev'
 
-class Request {
+class RequestService {
 
     constructor(name) {
         this.name = name
     }
 
-    async sendRequest(url) {
-        try {
-            const { data } = await axios(url)
-            return data
-        } catch (error) {
-            throw new Error(error.message)
+    async getAll(){
+        const age = await this.getAge()
+        const gender = await this.getGender() 
+        const nationalite = await this.getNationalite()
+        const phrase = await this.getPhrase()
+        
+        return {
+            "nome": this.name,
+            "genero": gender,
+            "idade": age,
+            "pais": nationalite,
+            "frase": phrase
         }
     }
-
+    
     async getGender() {
         try {
             const data = await this.sendRequest(GENDER + this.name)
@@ -29,7 +35,7 @@ class Request {
             throw new Error(error.message)
         }
     }
-
+    
     async getNationalite() {
         try {
             const data = await this.sendRequest(COUNTRY + this.name)
@@ -39,26 +45,35 @@ class Request {
             throw new Error(error.message)
         }
     }
-
+    
     async getAge() {
         try {
             const data = await this.sendRequest(AGE + this.name)
-            const age = JSON.stringify(data.age)
+            const age = data.age
             return age
         } catch (error) {
             throw new Error(error.message)
         }
     }
-
+    
     async getPhrase() {
         try {
             const data = await this.sendRequest(PHRASE)
-            const phrase = JSON.stringify(data.affirmation)
+            const phrase = data.affirmation
             return phrase
+        } catch (error) {
+            throw new Error(error.message)
+        }
+    }
+    
+    async sendRequest(url) {
+        try {
+            const { data } = await axios(url)
+            return data
         } catch (error) {
             throw new Error(error.message)
         }
     }
 
 }
-module.exports = Request
+module.exports = RequestService
