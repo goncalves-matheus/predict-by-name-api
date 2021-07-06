@@ -16,9 +16,10 @@ class RequestService {
         const gender = await this.getGender() 
         const nationalite = await this.getNationalite()
         const phrase = await this.getPhrase()
+        const formattedName = this._firstLetterToUppercase(this.name)
         
         return {
-            "nome": this.name,
+            "nome": formattedName,
             "genero": gender,
             "idade": age,
             "pais": nationalite,
@@ -80,6 +81,10 @@ class RequestService {
             return age + " anos"
         }
         return age + " ano"
+    }
+
+    _firstLetterToUppercase(name) {
+        return name.charAt(0).toUpperCase() + name.slice(1);
     }
 }
 module.exports = RequestService
