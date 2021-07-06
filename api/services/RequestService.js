@@ -50,7 +50,7 @@ class RequestService {
         try {
             const data = await this._sendRequest(AGE + this.name)
             const age = data.age
-            return age
+            return this._checkPlural(age)
         } catch (error) {
             throw new Error(error.message)
         }
@@ -75,5 +75,11 @@ class RequestService {
         }
     }
 
+    _checkPlural(age){
+        if(parseInt(age) > 1){
+            return age + " anos"
+        }
+        return age + " ano"
+    }
 }
 module.exports = RequestService
