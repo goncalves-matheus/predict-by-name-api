@@ -13,6 +13,7 @@ class RegisterController {
             if (await registerService.findByEmail(data.email)) {
                 throw new Error("Email já cadastrado")
             }
+            
             await registerService.save(data)
             return res.status(204).send()
         } catch (error) {
