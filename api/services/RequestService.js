@@ -28,7 +28,7 @@ class RequestService {
     
     async getGender() {
         try {
-            const data = await this.sendRequest(GENDER + this.name)
+            const data = await this._sendRequest(GENDER + this.name)
             const gender = JSON.stringify(data.gender)
             return gender == '"male"' ? "masculino" : "feminino"
         } catch (error) {
@@ -38,7 +38,7 @@ class RequestService {
     
     async getNationalite() {
         try {
-            const data = await this.sendRequest(COUNTRY + this.name)
+            const data = await this._sendRequest(COUNTRY + this.name)
             const country = data['country'][0]['country_id']
             return country
         } catch (error) {
@@ -48,7 +48,7 @@ class RequestService {
     
     async getAge() {
         try {
-            const data = await this.sendRequest(AGE + this.name)
+            const data = await this._sendRequest(AGE + this.name)
             const age = data.age
             return age
         } catch (error) {
@@ -58,7 +58,7 @@ class RequestService {
     
     async getPhrase() {
         try {
-            const data = await this.sendRequest(PHRASE)
+            const data = await this._sendRequest(PHRASE)
             const phrase = data.affirmation
             return phrase
         } catch (error) {
@@ -66,7 +66,7 @@ class RequestService {
         }
     }
     
-    async sendRequest(url) {
+    async _sendRequest(url) {
         try {
             const { data } = await axios(url)
             return data

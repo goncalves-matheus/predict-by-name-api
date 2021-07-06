@@ -1,6 +1,7 @@
+require('dotenv').config()
 const express = require('express')
 const routes = require('./routes')
-
+const { authenticationStrategies } = require('../api/security')
 const app = express()
 
 const port = 3000
