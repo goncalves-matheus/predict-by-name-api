@@ -1,7 +1,7 @@
 const { RegisterService }  = require('../services')
-const PersonSecurity = require('../security/RegisterSecurity')
+const RegisterSecurity = require('../security/RegisterSecurity')
 
-const personSecurity = new PersonSecurity()
+const registerSecurity = new RegisterSecurity()
 
 const registerService = new RegisterService()
 
@@ -22,10 +22,15 @@ class RegisterController {
     }
 
     static async login(req,res){
-        const token = personSecurity.createJWT(req.user)
-        res.set('Authorization', token)
-        return res.status(204).send()
+        try {
+            const token = registerSecurity.createJWT(req.user)
+            res.set('Authorization', token)
+            return res.status(204).send()
+        } catch (error) {
+            return res.status(400).json({erro: error.message})
+        }
     }
 
 }
+
 module.exports = RegisterController
