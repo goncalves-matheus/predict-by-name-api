@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt') 
 const jwt = require('jsonwebtoken')
 
-class PersonSecurity {
+class RegisterSecurity {
 
     async addPassword(password){
         const weight = 12
@@ -20,4 +20,4 @@ class PersonSecurity {
 }
 
 
-module.exports = PersonSecurity
+module.exports = RegisterSecurity

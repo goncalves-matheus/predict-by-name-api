@@ -12,9 +12,9 @@ class PersonController {
                 throw new Error("O nome não pode estar vazio")
             }
             
-            const personData = await PersonController.findAPersonDataByName(name)
+            const personData = await PersonController._findAPersonDataByName(name)
             
-            PersonController.wantToSave(req, personData)
+            PersonController._wantToSave(req, personData)
             
             return res.status(200).json(personData)
         } catch (error) {
@@ -31,8 +31,7 @@ class PersonController {
         }
     }
 
-    static async findAPersonDataByName(name){
-        console.log(name);
+    static async _findAPersonDataByName(name){
         let personData = await personService.findByName(name)
         if (!personData) {
             personData = await new RequestService(name).getAll()
@@ -40,13 +39,12 @@ class PersonController {
         return personData
     }
 
-    static async wantToSave(req, personData) {
-        if (req.params.save == "save") {
+    static async _wantToSave(req, personData) {
+        if (req.params.save == "save" && !await personService.findByName(personData.nome)) {
             await personService.save(personData)
         }
     }
-
-
+    
 }
 
 module.exports = PersonController

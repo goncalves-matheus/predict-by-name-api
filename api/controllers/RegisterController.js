@@ -1,5 +1,5 @@
 const { RegisterService }  = require('../services')
-const PersonSecurity = require('../security/PersonSecurity')
+const PersonSecurity = require('../security/RegisterSecurity')
 
 const personSecurity = new PersonSecurity()
 

@@ -1,10 +1,10 @@
 const database = require('../models')
-const PersonSecurity = require('../security/PersonSecurity')
-const personSecurity = new PersonSecurity()
+const RegisterSecurity = require('../security/RegisterSecurity')
+const registerSecurity = new RegisterSecurity()
 
 class RegisterService {
     async save(dados){
-        dados.senha = await personSecurity.addPassword(dados.senha)
+        dados.senha = await registerSecurity.addPassword(dados.senha)
         return database.Cadastros.create(dados)
     }
     async getAll(){
