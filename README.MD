@@ -19,6 +19,15 @@ Todas suas configurações iniciais são passadas por variáveis de ambiente, en
 | PORT        | Porta da aplicação                            |
 | CHAVE_JWT   | Chave de segurança para configuração do Token |
 
+## Rodando a Aplicação no Docker
+Subindo o servidor pelo docker-compose:
+```
+docker-compose up -d --build
+```
+Fazendo as migrações do banco de dados:
+```
+docker-compose exec web  npx sequelize-cli db:migrate
+```
 ### APIs utilizadas:
 
 1. https://genderize.io/
