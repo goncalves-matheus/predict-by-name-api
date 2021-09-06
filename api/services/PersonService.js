@@ -1,7 +1,7 @@
 const database = require('../models')
 
 class PersonService {
-    async save(dados){   
+    async save(dados){
         return database.Pessoas.create(dados)
     }
 

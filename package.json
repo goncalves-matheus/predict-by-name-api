@@ -29,6 +29,9 @@
     "passport-http-bearer": "^1.0.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "pino": "^6.13.2",
+    "pino-http": "^5.7.0",
+    "pino-pretty": "^6.0.0",
     "sequelize": "^6.6.5",
     "sequelize-cli": "^6.2.0"
   },

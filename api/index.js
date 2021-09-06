@@ -6,8 +6,10 @@ const app = express()
 
 const port = process.env.PORT
 
+const logger = require('../logger')
+
 routes(app)
 
-app.listen(port, () => console.log(`Servidor rodando na porta ${port}`))
+app.listen(port, () => logger.info(`Servidor rodando na porta ${port}`))
 
 module.exports = app
