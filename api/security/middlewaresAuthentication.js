@@ -1,5 +1,5 @@
 const passport = require('passport')
-const logger = require('../../logger')
+const logger = require('../logger')
 module.exports = {
     local: (req, res, next) => {
         passport.authenticate(

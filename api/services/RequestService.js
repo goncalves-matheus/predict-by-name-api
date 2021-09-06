@@ -1,5 +1,5 @@
 const axios = require('axios')
-const logger = require('../../logger')
+const logger = require('../logger')
 
 const GENDER = 'https://api.genderize.io?name='
 const COUNTRY = 'https://api.nationalize.io?name='

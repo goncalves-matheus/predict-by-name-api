@@ -1,6 +1,6 @@
 const { PersonService }  = require('../services')
 const { RequestService } = require('../services')
-const logger = require('../../logger')
+const logger = require('../logger')
 
 const personService = new PersonService()
 

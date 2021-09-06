@@ -1,7 +1,7 @@
 const { RegisterService }  = require('../services')
 const RegisterSecurity = require('../security/RegisterSecurity')
 
-const logger = require('../../logger')
+const logger = require('../logger')
 
 const registerSecurity = new RegisterSecurity()
 const registerService = new RegisterService()

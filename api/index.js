@@ -6,7 +6,7 @@ const app = express()
 
 const port = process.env.PORT
 
-const logger = require('../logger')
+const logger = require('./logger')
 
 routes(app)
 
