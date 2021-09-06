@@ -1,7 +1,7 @@
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy
 const BearerStrategy = require('passport-http-bearer').Strategy
-const jwt = require('JsonWebToken')
+const jwt = require('jsonwebtoken')
 
 const bcrypt = require('bcrypt')
 

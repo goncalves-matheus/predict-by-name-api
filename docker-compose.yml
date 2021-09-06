@@ -1,0 +1,44 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: 'db'
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_USER: 'root'
+      MYSQL_ALLOW_EMPTY_PASSWORD: ok
+      MYSQL_DATABASE: 'teste-node'
+      MYSQL_ROOT_HOST: '%'
+    networks:
+      - predict-node-network
+    restart: always
+    expose: 
+      - 3306
+    ports:
+      - 3306:3306
+    volumes: 
+      - /mysql-predict/data:/data/db
+
+  web:
+    build:
+      dockerfile: ./predict-node.dockerfile
+      context: .
+    image: matheus/predict-node
+    restart: always
+    container_name: predict-node
+    # command: npm start
+    command: npm start
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/app
+      - /usr/app/node_modules/
+    networks:
+      - predict-node-network
+    depends_on:
+      - db
+
+networks: 
+  predict-node-network:
+    driver: bridge
